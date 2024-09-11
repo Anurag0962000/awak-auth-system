@@ -1,0 +1,194 @@
+/* General reset and font settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: url("https://www.atce.com.sg/wp-content/uploads/2022/03/Atce-Awak-8-scaled.jpg") center center / 200% 200% no-repeat fixed;
+  animation: gradientAnimation 30s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+.login-container {
+  display: inline-flex;
+  width: 100%;
+  max-width: 450px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 15px 30px;
+  border-radius: 20px;
+  padding: 30px;
+  backdrop-filter: blur(15px);
+}
+
+.login-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #666;
+  text-align: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+  outline: none;
+}
+
+input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+  background: #fff;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #357abd, #4a90e2);
+  transform: translateY(-3px);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 6px 12px;
+}
+
+.loading-spinner {
+  display: none; /* Hide by default */
+  border-width: 8px;
+  border-style: solid;
+  border-color: #4a90e2 #f3f3f3 #f3f3f3;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.remember-me-group {
+  display: -webkit-box;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.remember-me-group input[type="checkbox"] {
+  accent-color: #4a90e2;
+}
+
+.remember-me-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.password-container {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .login-box {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+  }
+}
