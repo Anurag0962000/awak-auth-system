@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Load the username from localStorage if it exists
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+        document.getElementById('username').value = storedUsername;
+        document.getElementById('rememberMe').checked = true; // Set the checkbox as checked
+    }
+
     // Handle "Show Password" eye icon
     const eyeIcon = document.getElementById('eyeIcon');
     const passwordField = document.getElementById('password');
@@ -28,11 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
         loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            console.log('Form submitted'); // Debugging line
-
             // Show the spinner
             spinner.classList.remove('hidden');
-            console.log('Spinner shown'); // Debugging line
 
             // Clear previous errors
             usernameError.style.display = 'none';
@@ -66,10 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     rememberMe: rememberMe // Include rememberMe status in login data
                 };
 
-                // Log the email and rememberMe status to the console (but not the password)
-                console.log('Email:', username);
-                console.log('Remember Me:', rememberMe);
-
                 fetch('https://jsonplaceholder.typicode.com/posts', {
                     method: 'POST',
                     headers: {
@@ -79,8 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    // Successful login handling
-                    console.log('Login successful. Response received.');
                     alert('Login Successful!');
 
                     // Store the "Remember me" state in localStorage (if desired)
@@ -91,19 +89,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .catch((error) => {
-                    // Error handling
                     console.error('Error:', error);
                     alert('Login Failed!');
                 })
                 .finally(() => {
                     // Hide the spinner after the API call
                     spinner.classList.add('hidden');
-                    console.log('Spinner hidden'); // Debugging line
                 });
             } else {
                 // Hide the spinner if validation fails
                 spinner.classList.add('hidden');
-                console.log('Spinner hidden (validation failed)'); // Debugging line
             }
         });
     } else {
