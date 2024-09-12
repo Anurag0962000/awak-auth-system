@@ -47,18 +47,23 @@ document.addEventListener('DOMContentLoaded', function () {
             const password = document.getElementById('password').value;
             const rememberMe = rememberMeCheckbox.checked;
 
+            // Log form values except for the password
+            console.log('Form values:', { username, rememberMe }); // Log username and rememberMe only
+
             let valid = true;
 
             // Validation
             if (!validateEmail(username)) {
                 usernameError.style.display = 'block';
                 usernameError.textContent = 'Please enter a valid email';
+                console.log('Invalid email'); // Log invalid email
                 valid = false;
             }
 
             if (password.length < 6) {
                 passwordError.style.display = 'block';
                 passwordError.textContent = 'Password must be at least 6 characters long';
+                console.log('Password too short'); // Log password length issue
                 valid = false;
             }
 
@@ -70,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     rememberMe: rememberMe // Include rememberMe status in login data
                 };
 
+                console.log('Sending login data without password:', {
+                    username: username,
+                    rememberMe: rememberMe
+                }); // Log data being sent without the password
+
                 fetch('https://jsonplaceholder.typicode.com/posts', {
                     method: 'POST',
                     headers: {
@@ -77,8 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     body: JSON.stringify(loginData),
                 })
-                .then((response) => response.json())
+                .then((response) => {
+                    console.log('API response status:', response.status); // Log API response status
+                    return response.json();
+                })
                 .then((data) => {
+                    // Ensure password is not logged
+                    const { password, ...dataWithoutPassword } = data;
+                    console.log('API data (password hidden):', dataWithoutPassword); // Log API response data without the password
                     alert('Login Successful!');
 
                     // Store the "Remember me" state in localStorage (if desired)
